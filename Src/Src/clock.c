@@ -44,20 +44,14 @@ static HAL_StatusTypeDef ConfigureClock(void) {
 
 void ClockInit(void) {
     if (ConfigureVoltageScale() != HAL_OK) {
-        Error_Handler();
+        // Error_Handler();
     }
 
     if (ConfigureOscillator() != HAL_OK) {
-        Error_Handler();
+        // Error_Handler();
     }
 
     if (ConfigureClock() != HAL_OK) {
-        Error_Handler();
-    }
-}
-
-void Error_Handler(void) {
-    __disable_irq();
-    while (1) {
+        // Error_Handler();
     }
 }

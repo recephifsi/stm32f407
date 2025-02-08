@@ -10,9 +10,9 @@ int main(void) {
         // Delay(1000);
 
         if (ReadPin(kUserButtonPort, kUserButtonPin)) {
-            LedOn(kLedPort, kOrangeLedPin);
+            LedOn(kLedPort, kGreenLedPin);
         } else {
-            LedOff(kLedPort, kOrangeLedPin);
+            LedOff(kLedPort, kGreenLedPin);
         }
     }
 }

@@ -3,14 +3,16 @@
  * @brief Application initialization and error handling implementation
  */
 
-#include "clock.h"
-#include "gpio.h"
 #include "app.h"
+#include "gpio.h"
+#include "clock.h"
+#include "timer.h"
 
 void AppInit(void) {
     HAL_Init();
     ClockInit();
     GpioInit();
+    Tim1Init();
 }
 
 /**
