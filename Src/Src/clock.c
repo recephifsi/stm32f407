@@ -4,7 +4,7 @@
  * @details Configures system clocks using HSI with PLL for STM32F4
  */
 
-#include "clock_config.h"
+#include "clock.h"
 
 void Error_Handler(void);
 
@@ -36,13 +36,13 @@ static HAL_StatusTypeDef ConfigureOscillator(void) {
  * @return HAL status
  * @note Sets up AHB, APB1, APB2 prescalers
  */
-static HAL_StatusTypeDef ConfigureClockTree(void) {
-    RCC_ClkInitTypeDef kClockConfig = {.ClockType = (RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2), .SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK, .AHBCLKDivider = RCC_SYSCLK_DIV8, .APB1CLKDivider = RCC_HCLK_DIV2, .APB2CLKDivider = RCC_HCLK_DIV1};
+static HAL_StatusTypeDef ConfigureClock(void) {
+    RCC_ClkInitTypeDef clockConfig = {.ClockType = (RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2), .SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK, .AHBCLKDivider = RCC_SYSCLK_DIV8, .APB1CLKDivider = RCC_HCLK_DIV2, .APB2CLKDivider = RCC_HCLK_DIV1};
 
-    return HAL_RCC_ClockConfig(&kClockConfig, FLASH_LATENCY_0);
+    return HAL_RCC_ClockConfig(&clockConfig, FLASH_LATENCY_0);
 }
 
-void ClockConfig(void) {
+void ClockInit(void) {
     if (ConfigureVoltageScale() != HAL_OK) {
         Error_Handler();
     }
@@ -51,7 +51,13 @@ void ClockConfig(void) {
         Error_Handler();
     }
 
-    if (ConfigureClockTree() != HAL_OK) {
+    if (ConfigureClock() != HAL_OK) {
         Error_Handler();
+    }
+}
+
+void Error_Handler(void) {
+    __disable_irq();
+    while (1) {
     }
 }

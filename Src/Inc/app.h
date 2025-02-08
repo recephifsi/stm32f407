@@ -6,7 +6,7 @@
 #ifndef INC_APP_H_
 #define INC_APP_H_
 
-#include "gpio_config.h"
+#include "gpio.h"
 #include "stm32f4xx_hal.h"
 
 /**

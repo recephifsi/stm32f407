@@ -13,6 +13,6 @@
  * @return None
  * @note Configures voltage scaling, oscillators and clock tree
  */
-void ClockConfig(void);
+void ClockInit(void);
 
 #endif /* CLOCK_CONFIG_H */

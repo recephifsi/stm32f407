@@ -3,14 +3,14 @@
  * @brief Application initialization and error handling implementation
  */
 
+#include "clock.h"
+#include "gpio.h"
 #include "app.h"
-#include "clock_config.h"
-#include "gpio_config.h"
 
 void AppInit(void) {
     HAL_Init();
-    ClockConfig();
-    GpioConfig();
+    ClockInit();
+    GpioInit();
 }
 
 /**
@@ -18,7 +18,7 @@ void AppInit(void) {
  * @details Disables interrupts and enters infinite loop
  * @note Called by various functions when critical error occurs
  */
-void Error_Handler(void) {
+void Error_Handlers(void) {
     __disable_irq();
     while (1) {
     }
